@@ -1,0 +1,18 @@
+{
+	email {$CERT_EMAIL}
+	admin off
+}
+
+{$SITE_HOSTNAME} {
+	encode zstd gzip
+	header Strict-Transport-Security "max-age=31536000"
+	request_body {
+		max_size 64KB
+	}
+	handle_path /api/* {
+		reverse_proxy api:4100
+	}
+	handle {
+		reverse_proxy web:3001
+	}
+}

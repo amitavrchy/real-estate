@@ -1,3 +1,9 @@
 node_modules
 dist
-.env
+.env*
+.local
+coverage
+test-results
+*.tsbuildinfo
+docs
+deploy

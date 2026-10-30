@@ -8,5 +8,11 @@ out/
 .venv/
 __pycache__/
 *.log
+.local/
+test-results/
+playwright-report/
+*.tsbuildinfo
+coverage/
+*.dump
 .DS_Store
 !**/.env.example
