@@ -1,0 +1,31 @@
+# Haven API with Postgres bundled inside the Docker web service.
+services:
+  - type: web
+    name: haven-api
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Server/Dockerfile.render
+    dockerContext: ./Server
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: "0.0.0.0"
+      - key: PORT
+        value: "4000"
+      - key: ALLOW_DEMO_SEED
+        value: "1"
+      - key: POSTGRES_USER
+        value: postgres
+      - key: POSTGRES_PASSWORD
+        value: postgres
+      - key: POSTGRES_DB
+        value: haven
+      - key: DATABASE_URL
+        value: postgresql://postgres:postgres@127.0.0.1:5432/haven
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_ORIGIN
+        sync: false

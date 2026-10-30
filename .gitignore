@@ -16,3 +16,4 @@ coverage/
 *.dump
 .DS_Store
 !**/.env.example
+.netlify/

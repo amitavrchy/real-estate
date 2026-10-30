@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
-  output: 'standalone',
+  output: process.env.NETLIFY ? undefined : 'standalone',
   // Include native image libraries (notably Windows DLLs) in standalone output.
   outputFileTracingIncludes: { '/*': ['./node_modules/@img/**/*'] },
   htmlLimitedBots: /.*/,

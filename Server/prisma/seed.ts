@@ -5,7 +5,7 @@ import { hash } from 'bcrypt';
 const db = new PrismaClient();
 const photo = (name: string) => `/images/${name}.jpg`;
 async function main() {
-  if (process.env.NODE_ENV === 'production')
+  if (process.env.NODE_ENV === 'production' && process.env.ALLOW_DEMO_SEED !== '1')
     throw new Error('Demo seeding is disabled in production.');
   const passwordHash = await hash(
     process.env.DEMO_PASSWORD ?? 'HavenDemo2026!',
@@ -355,12 +355,12 @@ async function main() {
             : ['Terrace', 'Parking', 'Elevator'],
       features: [
         'Natural light',
-        'Chef’s kitchen',
+        'Chefâ€™s kitchen',
         'Custom cabinetry',
         'Wide-plank oak floors',
         'Indoor-outdoor living',
       ],
-      description: `A considered expression of California living. ${title} brings together exceptional architecture, an effortless flow, and a remarkable sense of place.\n\nGenerous windows invite the landscape in, while beautifully proportioned living spaces open onto private outdoor areas. A chef’s kitchen with custom cabinetry and a generous island anchors the home, designed equally for quiet mornings and evenings with friends.\n\nThe primary suite is a retreat of its own, with a spa-inspired bathroom and thoughtful storage. Every finish has been chosen with intention, from warm oak underfoot to the natural stone surfaces throughout.\n\nLocated at ${addressLine1}, this is an invitation to settle into a neighborhood and make a life of your own.`,
+      description: `A considered expression of California living. ${title} brings together exceptional architecture, an effortless flow, and a remarkable sense of place.\n\nGenerous windows invite the landscape in, while beautifully proportioned living spaces open onto private outdoor areas. A chefâ€™s kitchen with custom cabinetry and a generous island anchors the home, designed equally for quiet mornings and evenings with friends.\n\nThe primary suite is a retreat of its own, with a spa-inspired bathroom and thoughtful storage. Every finish has been chosen with intention, from warm oak underfoot to the natural stone surfaces throughout.\n\nLocated at ${addressLine1}, this is an invitation to settle into a neighborhood and make a life of your own.`,
       publishedAt: new Date(Date.now() - i * 172800000),
     };
     const property = await db.property.upsert({
@@ -381,7 +381,7 @@ async function main() {
           id: `${property.id}-media-${sortOrder}`,
           propertyId: property.id,
           url: photo(image),
-          alt: `${title} — ${sortOrder === 0 ? 'exterior' : 'interior living space'}`,
+          alt: `${title} â€” ${sortOrder === 0 ? 'exterior' : 'interior living space'}`,
           sortOrder,
         },
         update: { url: photo(image) },
