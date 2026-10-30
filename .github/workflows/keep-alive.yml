@@ -11,7 +11,7 @@ jobs:
         run: |
           URL="${{ vars.RENDER_HEALTH_URL }}"
           if [ -z "$URL" ]; then
-            URL="https://haven-api.onrender.com/health"
+            URL="https://haven-api-17km.onrender.com/health"
           fi
           echo "Pinging $URL"
           for i in 1 2 3 4 5; do
