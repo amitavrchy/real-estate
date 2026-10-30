@@ -1,0 +1,342 @@
+.team-page {
+  padding-bottom: 72px;
+}
+.team-intro {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 70px;
+  padding-block: 80px 64px;
+}
+.team-intro > div > p:not(.eyebrow) {
+  max-width: 510px;
+  margin-top: 24px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.team-intro .button {
+  margin-top: 28px;
+}
+.team-intro-note {
+  padding: 34px;
+  background: #eef1e9;
+  border: 1px solid #dfe5d8;
+}
+.team-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  background: #e5ebdf;
+  color: var(--accent);
+}
+.team-intro-note .eyebrow {
+  margin-block: 22px 14px;
+  letter-spacing: 0.06em;
+}
+.team-intro-note h2 {
+  font-size: 37px;
+}
+.team-intro-note > p:not(.eyebrow) {
+  margin-top: 18px;
+  color: #5b6557;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.team-location {
+  display: block;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #d4ddcc;
+  font-size: 14px;
+  color: var(--accent);
+}
+.team-story {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+  background: var(--mist);
+}
+.team-story-image {
+  position: relative;
+  min-height: 430px;
+}
+.team-story-image img {
+  object-fit: cover;
+}
+.team-story-image > span {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  width: fit-content;
+  border-radius: 999px;
+  background: #fafaf8ed;
+  padding: 10px 16px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.team-story-copy {
+  align-self: center;
+  padding: 46px;
+}
+.team-story-copy > .eyebrow,
+.team-faq > div > .eyebrow {
+  margin-bottom: 20px;
+  color: var(--muted);
+}
+.team-story-copy > p:not(.eyebrow) {
+  margin-top: 22px;
+  color: #5c6457;
+  font-size: 15px;
+  line-height: 1.85;
+}
+.team-service-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+.team-service-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #d0d6c9;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 14px;
+  background: var(--paper);
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.team-service-links a:hover {
+  background: #e4eadd;
+  border-color: #abbca0;
+}
+.team-directory {
+  padding-block: 88px;
+  scroll-margin-top: 110px;
+}
+.team-directory .agent-grid {
+  align-items: stretch;
+  gap: 24px;
+}
+.team-directory .agent-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  padding: 18px 18px 24px;
+  background: #fff;
+}
+.team-directory .agent-card .agent-portrait {
+  aspect-ratio: 1;
+  border-radius: 14px;
+}
+.team-directory .agent-card p {
+  line-height: 1.8;
+}
+.team-directory .agent-card .team-advisor-bio {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-block: 16px 24px;
+  font-size: 15px;
+  color: #596253;
+}
+.team-directory .agent-card .arrow-link {
+  margin-top: auto;
+}
+.team-approach {
+  padding-bottom: 80px;
+}
+.team-values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.team-value-card {
+  padding: 28px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--line);
+  background: #f4f4ef;
+}
+.team-value-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.team-value-top > span:last-child {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: #65735d;
+}
+.team-value-card p {
+  margin-top: 16px;
+  color: #5c6457;
+  font-size: 15px;
+  line-height: 1.85;
+}
+.team-faq {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 80px;
+  padding-block: 18px 88px;
+}
+.team-faq > div > p:not(.eyebrow) {
+  max-width: 350px;
+  margin-top: 24px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.team-faq-list details {
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 24px;
+  background: #fff;
+}
+.team-faq-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  list-style: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+}
+.team-faq-list summary::-webkit-details-marker {
+  display: none;
+}
+.team-faq-list summary svg {
+  color: var(--accent);
+  transition: transform 0.2s;
+}
+.team-faq-list details[open] summary svg {
+  transform: rotate(180deg);
+}
+.team-faq-list details > p {
+  padding-top: 18px;
+  color: #5c6457;
+  font-size: 15px;
+  line-height: 1.85;
+}
+.team-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+  border-radius: var(--radius-panel);
+  padding: 48px;
+  color: var(--paper);
+  background: var(--accent);
+}
+.team-cta .eyebrow {
+  color: #d1ddca;
+  margin-bottom: 20px;
+}
+.team-cta h2 {
+  font-size: clamp(38px, 4vw, 52px);
+}
+.team-cta p:not(.eyebrow) {
+  color: #d1ddca;
+  margin-top: 22px;
+}
+.team-cta-actions {
+  display: grid;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.team-cta .button-outline {
+  background: transparent;
+  color: var(--paper);
+  border-color: #9bb296;
+}
+.team-cta .button-outline:hover {
+  background: #ffffff12;
+}
+@media (max-width: 1000px) {
+  .team-intro {
+    gap: 32px;
+  }
+  .team-intro-note {
+    padding: 26px;
+  }
+  .team-story-copy {
+    padding: 30px;
+  }
+  .team-values {
+    gap: 16px;
+  }
+  .team-value-card {
+    padding: 22px;
+  }
+  .team-faq {
+    gap: 36px;
+  }
+}
+@media (max-width: 760px) {
+  .team-intro,
+  .team-story,
+  .team-values,
+  .team-faq {
+    grid-template-columns: 1fr;
+  }
+  .team-intro {
+    padding-block: 42px;
+    gap: 34px;
+  }
+  .team-intro-note h2 {
+    font-size: 36px;
+  }
+  .team-story-image {
+    aspect-ratio: 1.15;
+    min-height: 0;
+  }
+  .team-story-image > span {
+    bottom: 18px;
+    left: 18px;
+    right: 18px;
+    padding: 9px 12px;
+    letter-spacing: 0;
+  }
+  .team-story-copy {
+    padding: 30px 24px;
+  }
+  .team-directory {
+    padding-block: 58px;
+  }
+  .team-directory .agent-grid {
+    grid-template-columns: 1fr;
+  }
+  .team-directory .agent-card :is(h2, h3) {
+    font-size: 32px;
+  }
+  .team-approach {
+    padding-bottom: 54px;
+  }
+  .team-value-card {
+    padding: 26px;
+  }
+  .team-faq {
+    gap: 30px;
+    padding-bottom: 54px;
+  }
+  .team-faq-list details {
+    padding: 18px;
+  }
+  .team-cta {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 32px 24px;
+    gap: 28px;
+  }
+}

@@ -17,6 +17,7 @@ import { get, heroImage, money } from "@/lib/api";
 import type { Agent, PageResult, Post } from "@/lib/types";
 import { ArrowLink, ErrorState, Loading, Reveal } from "./ui";
 import { ListingCard } from "./listing-card";
+import { Select } from "./select";
 
 export function Home() {
   const router = useRouter();
@@ -149,31 +150,38 @@ export function Home() {
               </datalist>
             </div>
           </label>
-          <label>
+          <div className="home-search-field">
             <span>PRICE RANGE</span>
-            <select name="maxPrice" aria-label="Maximum price" key={type}>
-              <option value="">Any price</option>
-              {(type === "SALE"
-                ? [2000000, 3000000, 5000000, 8000000]
-                : [8000, 10000, 15000]
-              ).map((n) => (
-                <option key={n} value={n}>
-                  Up to {money(n, true)}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
+            <Select
+              name="maxPrice"
+              label="Maximum price"
+              key={type}
+              options={[
+                { value: "", label: "Any price" },
+                ...(type === "SALE"
+                  ? [2000000, 3000000, 5000000, 8000000]
+                  : [8000, 10000, 15000]
+                ).map((n) => ({
+                  value: String(n),
+                  label: `Up to ${money(n, true)}`,
+                })),
+              ]}
+            />
+          </div>
+          <div className="home-search-field">
             <span>BEDROOMS</span>
-            <select name="beds" aria-label="Minimum bedrooms">
-              <option value="">Any beds</option>
-              {[1, 2, 3, 4, 5].map((n) => (
-                <option key={n} value={n}>
-                  {n}+ bedrooms
-                </option>
-              ))}
-            </select>
-          </label>
+            <Select
+              name="beds"
+              label="Minimum bedrooms"
+              options={[
+                { value: "", label: "Any beds" },
+                ...[1, 2, 3, 4, 5].map((n) => ({
+                  value: String(n),
+                  label: `${n}+ bedrooms`,
+                })),
+              ]}
+            />
+          </div>
           <button className="button search-submit" type="submit">
             <Search size={19} />
             <span>Find a home</span>

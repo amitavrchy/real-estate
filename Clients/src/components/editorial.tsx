@@ -7,6 +7,10 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
+  ChevronDown,
+  Compass,
+  HeartHandshake,
+  KeyRound,
   MapPin,
   Phone,
 } from "lucide-react";
@@ -23,29 +27,115 @@ export function AgentsPage() {
     queryKey: ["agents"],
     queryFn: () => get<Agent[]>("/agents"),
   });
+  const advisors =
+    query.data?.filter((agent) => agent.id !== "demo-admin") ?? [];
   return (
-    <div className="container content-page">
-      <div className="page-intro">
-        <p className="eyebrow">LOCAL KNOWLEDGE. HUMAN CONNECTION.</p>
-        <h1>
-          Your place.
-          <br />
-          <em>Your people.</em>
-        </h1>
-        <p>
-          Thoughtful listeners. Tireless advocates. People who care as much
-          about your next chapter as you do.
-        </p>
+    <div className="container content-page team-page">
+      <div className="page-intro team-intro">
+        <div>
+          <p className="eyebrow">LOCAL KNOWLEDGE. HUMAN CONNECTION.</p>
+          <h1>
+            Your place.
+            <br />
+            <em>Your people.</em>
+          </h1>
+          <p>
+            Thoughtful listeners. Tireless advocates. People who care as much
+            about your next chapter as you do.
+          </p>
+          <a href="#team-advisors" className="button">
+            Find your advisor <ArrowUpRight size={18} />
+          </a>
+        </div>
+        <aside className="team-intro-note">
+          <span className="team-icon">
+            <MapPin size={24} aria-hidden="true" />
+          </span>
+          <p className="eyebrow">ROOTED HERE. FOCUSED ON YOU.</p>
+          <h2>
+            A local perspective.
+            <br />
+            <em>A personal connection.</em>
+          </h2>
+          <p>
+            From the city streets to the quieter corners of Marin, we help you
+            see a place through the life you want to live.
+          </p>
+          <span className="team-location">San Francisco & Marin County</span>
+        </aside>
       </div>
-      {query.isLoading ? (
-        <Loading />
-      ) : query.isError ? (
-        <ErrorState retry={() => query.refetch()} />
-      ) : (
-        <div className="agent-grid">
-          {query.data
-            ?.filter((a) => a.id !== "demo-admin")
-            .map((a) => (
+
+      <section className="team-story" aria-labelledby="team-story-title">
+        <div className="team-story-image">
+          <Image
+            src="/images/interior-2.jpg"
+            alt="A welcoming, sunlit living space opening onto a garden"
+            fill
+            sizes="(max-width: 760px) 100vw, 45vw"
+          />
+          <span>ROOM FOR YOUR NEXT CHAPTER</span>
+        </div>
+        <div className="team-story-copy">
+          <p className="eyebrow">THE PEOPLE BEHIND THE PLACE</p>
+          <h2 id="team-story-title">
+            Good homes start
+            <br />
+            with <em>good people.</em>
+          </h2>
+          <p>
+            A home search is personal. So is the way we work. We take time to
+            understand your everyday rituals, your bigger plans, and the details
+            that make a place feel right.
+          </p>
+          <p>
+            Whether you are finding your first city apartment, making room for
+            more, or preparing to sell, you will have a thoughtful partner for
+            the conversations and decisions ahead.
+          </p>
+          <div className="team-service-links" aria-label="Ways we can help">
+            <Link href="/search">
+              Find a home <ArrowUpRight size={15} />
+            </Link>
+            <Link href="/sell">
+              Plan your sale <ArrowUpRight size={15} />
+            </Link>
+            <Link href="/rent">
+              Explore rentals <ArrowUpRight size={15} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="team-advisors"
+        className="team-directory"
+        aria-labelledby="team-advisors-title"
+      >
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">YOUR PEOPLE, RIGHT HERE</p>
+            <h2 id="team-advisors-title">
+              Meet your <em>next-door experts.</em>
+            </h2>
+          </div>
+          <p className="section-heading-aside">
+            Different perspectives. A shared belief that your next move should
+            feel like you.
+          </p>
+        </div>
+        {query.isLoading ? (
+          <Loading />
+        ) : query.isError ? (
+          <ErrorState retry={() => query.refetch()} />
+        ) : !advisors.length ? (
+          <Empty
+            title="Good people are on their way."
+            text="Our advisor directory is being updated. Explore the homes while we get ready to introduce you."
+            href="/search"
+          />
+        ) : (
+          <div className="agent-grid">
+            {advisors.map((a) => (
               <Reveal className="agent-card" key={a.id}>
                 <Link href={`/agents/${a.id}`}>
                   <div className="agent-portrait">
@@ -56,7 +146,7 @@ export function AgentsPage() {
                       sizes="(max-width: 760px) 100vw, 33vw"
                     />
                   </div>
-                  <h2>{a.name}</h2>
+                  <h3>{a.name}</h3>
                 </Link>
                 <p>Bay Area property advisor</p>
                 <p>
@@ -64,14 +154,129 @@ export function AgentsPage() {
                   San Francisco & Marin County · {a._count?.listings ?? 0}{" "}
                   available homes
                 </p>
+                {a.bio && <p className="team-advisor-bio">{a.bio}</p>}
                 <ArrowLink href={`/agents/${a.id}`}>
                   Get to know {a.name.split(" ")[0]}
-                  <ArrowRight size={18} />
                 </ArrowLink>
               </Reveal>
             ))}
+          </div>
+        )}
+      </section>
+
+      <section className="team-approach" aria-labelledby="team-approach-title">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">THE HAVEN WAY</p>
+            <h2 id="team-approach-title">
+              A little more care.
+              <br />
+              <em>At every step.</em>
+            </h2>
+          </div>
+          <p className="section-heading-aside">
+            Clear conversations, considered advice, and room to make a decision
+            in your own time.
+          </p>
         </div>
-      )}
+        <div className="team-values">
+          {[
+            {
+              icon: HeartHandshake,
+              title: "Listen first.",
+              text: "Your story comes before a shortlist. We start with what matters to you, from a morning commute to a little more room for everyone.",
+            },
+            {
+              icon: Compass,
+              title: "Know the details.",
+              text: "We bring a local eye to the search and help you ask the right questions about a home, a neighborhood, and the steps ahead.",
+            },
+            {
+              icon: KeyRound,
+              title: "Stay by your side.",
+              text: "From the first viewing to your next decision, we help make the process easier to follow with clear next steps and a familiar person to turn to.",
+            },
+          ].map(({ icon: Icon, title, text }, index) => (
+            <article key={title} className="team-value-card">
+              <div className="team-value-top">
+                <span className="team-icon">
+                  <Icon size={23} aria-hidden="true" />
+                </span>
+                <span>0{index + 1}</span>
+              </div>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="team-faq" aria-labelledby="team-faq-title">
+        <div>
+          <p className="eyebrow">BEFORE WE SAY HELLO</p>
+          <h2 id="team-faq-title">
+            A few things
+            <br />
+            <em>you might wonder.</em>
+          </h2>
+          <p>
+            No perfect brief needed. Just bring your questions and a sense of
+            what comes next.
+          </p>
+        </div>
+        <div className="team-faq-list">
+          {[
+            {
+              question: "How do I choose the right advisor?",
+              answer:
+                "Start with the people above. Read their stories, explore the homes they represent, and see whose approach feels like a good fit. Their profile has a contact number and links to their current listings.",
+            },
+            {
+              question: "Can you help me buy and sell?",
+              answer:
+                "You can explore homes with us and share your selling plans through the seller introduction form. Tell your advisor about both sides of your move so you can talk through your priorities and timing together.",
+            },
+            {
+              question: "What happens after I get in touch?",
+              answer:
+                "Your inquiry goes to the advisor representing the home. Share a little about your plans or request a viewing, and the advisor can follow up to discuss the property and confirm availability. Viewing requests need the advisor’s confirmation.",
+            },
+            {
+              question: "Can I start with a rental?",
+              answer:
+                "Of course. Our rental search has the same location, budget, and bedroom filters. Find a home you like and contact the advisor through the listing to ask questions or request a viewing.",
+            },
+          ].map(({ question, answer }) => (
+            <details key={question} name="team-questions">
+              <summary>
+                {question}
+                <ChevronDown size={19} aria-hidden="true" />
+              </summary>
+              <p>{answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section className="team-cta" aria-labelledby="team-cta-title">
+        <div>
+          <p className="eyebrow">THE RIGHT PLACE. THE RIGHT PEOPLE.</p>
+          <h2 id="team-cta-title">
+            Your next chapter deserves
+            <br />
+            <em>good company.</em>
+          </h2>
+          <p>Let’s start with a conversation, and see where it takes you.</p>
+        </div>
+        <div className="team-cta-actions">
+          <a href="#team-advisors" className="button button-paper">
+            Meet your advisor <ArrowUpRight size={18} />
+          </a>
+          <Link href="/search" className="button button-outline">
+            Explore homes <ArrowRight size={18} />
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
