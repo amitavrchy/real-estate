@@ -1,6 +1,10 @@
 # Haven Client
 
-See the [project README](../Server/README.md) for setup, demo accounts, tests, and deployment. From the repository root, `npm --prefix Server run setup` prepares both apps and `npm --prefix Server run dev` starts them at http://localhost:3001.
+**Frontend:** [https://haven-residence.netlify.app](https://haven-residence.netlify.app)
+
+**Backend API:** [https://haven-api-17km.onrender.com](https://haven-api-17km.onrender.com)
+
+See the [project README](../README.md) for setup, demo accounts, and deployment. From the repository root, `npm --prefix Server run setup` prepares both apps and `npm --prefix Server run dev` starts them. The client reads `NEXT_PUBLIC_API_URL` and `NEXT_PUBLIC_SITE_URL`.
 
 Next.js App Router and TypeScript, with Redux Toolkit for session/UI/favorites, React Query for server data, axios for HTTP, React Hook Form and Zod for forms, Framer Motion for animation, Embla for carousels, and lazy-loaded React Leaflet maps.
 
