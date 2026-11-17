@@ -6,9 +6,9 @@
     "node": ">=22"
   },
   "scripts": {
-    "dev": "node init && next dev -p 3001",
-    "build": "node init && next build",
-    "start": "node init && node scripts/start.mjs",
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "node scripts/start.mjs",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test",
